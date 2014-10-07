@@ -9,10 +9,10 @@ import xerial.sbt.Sonatype
 object SbtPlayBuild extends Build {
   lazy val template = SbtProjects.mavenPublishProject("sbt-play").settings(projectSettings: _*)
 
-  lazy val projectSettings = Sonatype.sonatypeSettings ++ Seq(
+  lazy val projectSettings = Seq(
     SbtUtils.gitUserName := "malliina",
     SbtUtils.developerName := "Michael Skogberg",
-    version := "0.0.1",
+    version := "0.1.1",
     sbtPlugin := true,
     scalaVersion := "2.10.4",
     //    crossScalaVersions := Seq("2.11.0", "2.10.4"),

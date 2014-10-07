@@ -6,10 +6,10 @@ resulting jar.
 
 ## Installation ##
 
-    addSbtPlugin("com.github.malliina" % "sbt-play" % "0.0.1")
+    addSbtPlugin("com.github.malliina" % "sbt-play" % "0.0.4")
 
 ## Usage ##
 
 Define your project as follows in Build.scala:
 
-    lazy val project = com.mle.play.PlayProjects.playProject("mywebsite")
+    lazy val project = com.mle.sbt.play.PlayProjects.playProject("mywebsite")
