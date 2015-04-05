@@ -12,7 +12,7 @@ object SbtPlayBuild extends Build {
   lazy val projectSettings = Seq(
     SbtUtils.gitUserName := "malliina",
     SbtUtils.developerName := "Michael Skogberg",
-    version := "0.1.1",
+    version := "0.2.0",
     sbtPlugin := true,
     scalaVersion := "2.10.4",
     //    crossScalaVersions := Seq("2.11.0", "2.10.4"),
@@ -21,7 +21,7 @@ object SbtPlayBuild extends Build {
   ) ++ plugins
 
   def plugins = Seq(
-    "com.github.malliina" %% "sbt-utils" % "0.0.5",
-    "com.typesafe.play" % "sbt-plugin" % "2.3.4"
+    "com.github.malliina" %% "sbt-utils" % "0.1.0",
+    "com.typesafe.play" % "sbt-plugin" % "2.3.8"
   ) map addSbtPlugin
 }
