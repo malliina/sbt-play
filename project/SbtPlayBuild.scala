@@ -1,9 +1,8 @@
-import com.mle.sbtutils.{SbtProjects, SbtUtils}
+import bintray.Plugin.bintraySettings
+import bintray.Keys.{bintray, bintrayOrganization, repository}
+import com.mle.sbtutils.SbtProjects
 import sbt.Keys._
 import sbt._
-import xerial.sbt.Sonatype
-import bintray.Plugin.bintraySettings
-import bintray.Keys.{bintrayOrganization, repository, bintray}
 
 /**
  * A scala build file template.
@@ -13,7 +12,7 @@ object SbtPlayBuild extends Build {
 
   lazy val projectSettings = bintraySettings ++ Seq(
     organization := "com.github.malliina",
-    version := "0.3.0",
+    version := "0.3.1",
     sbtPlugin := true,
     scalaVersion := "2.10.4",
     //    crossScalaVersions := Seq("2.11.0", "2.10.4"),
@@ -23,7 +22,7 @@ object SbtPlayBuild extends Build {
     bintrayOrganization in bintray := None,
     repository in bintray := "sbt-plugins",
     publishMavenStyle := false,
-    licenses += ("MIT", url("http://opensource.org/licenses/MIT"))
+    licenses +=("MIT", url("http://opensource.org/licenses/MIT"))
   ) ++ plugins
 
   def plugins = Seq(

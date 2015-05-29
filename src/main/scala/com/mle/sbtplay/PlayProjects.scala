@@ -11,8 +11,6 @@ import scala.language.postfixOps
  * @author Michael
  */
 object PlayProjects {
-  val mleGroup = "com.github.malliina"
-
   def plainPlayProject(name: String) = SbtProjects.testableProject(name).enablePlugins(play.sbt.PlayScala).settings(
     libraryDependencies += "org.scalatestplus" %% "play" % "1.2.0" % "test",
     mappings in(Compile, packageBin) ++= {
