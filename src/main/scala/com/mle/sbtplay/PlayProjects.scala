@@ -12,7 +12,7 @@ import scala.language.postfixOps
  */
 object PlayProjects {
   def plainPlayProject(name: String) = SbtProjects.testableProject(name).enablePlugins(play.sbt.PlayScala).settings(
-    libraryDependencies += "org.scalatestplus" %% "play" % "1.2.0" % "test",
+    libraryDependencies += "org.scalatestplus" %% "play" % "1.4.0-M3" % "test",
     mappings in(Compile, packageBin) ++= {
       (unmanagedResourceDirectories in Assets).value flatMap
         (assetDir => (assetDir ***) pair relativeTo(baseDirectory.value))

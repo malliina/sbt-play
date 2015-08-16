@@ -12,10 +12,9 @@ object SbtPlayBuild extends Build {
 
   lazy val projectSettings = bintraySettings ++ Seq(
     organization := "com.github.malliina",
-    version := "0.3.1",
+    version := "0.3.2",
     sbtPlugin := true,
     scalaVersion := "2.10.4",
-    //    crossScalaVersions := Seq("2.11.0", "2.10.4"),
     exportJars := false,
     fork in Test := true,
     resolvers += Resolver.url("malliina bintray sbt", url("https://dl.bintray.com/malliina/sbt-plugins/"))(Resolver.ivyStylePatterns),
@@ -27,6 +26,6 @@ object SbtPlayBuild extends Build {
 
   def plugins = Seq(
     "com.github.malliina" %% "sbt-utils" % "0.2.0",
-    "com.typesafe.play" % "sbt-plugin" % "2.4.0"
+    "com.typesafe.play" % "sbt-plugin" % "2.4.2"
   ) map addSbtPlugin
 }
