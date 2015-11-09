@@ -11,15 +11,22 @@ import sbt._
 import scala.language.postfixOps
 
 /**
- * @author Michael
- */
+  * @author Michael
+  */
 object PlayProject {
-  def apply(name: String, base: File = file(".")) = SbtProjects.testableProject(name, base).enablePlugins(PlayScala).settings(
+  def apply(name: String, base: File = file(".")) = SbtProjects.baseProject(name, base)
+    .enablePlugins(PlayScala)
+    .settings(defaultSettings: _*)
+
+  def defaultSettings = Seq(
     resolvers += "scalaz-bintray" at "https://dl.bintray.com/scalaz/releases",
     libraryDependencies ++= Seq(
       PlayImport.specs2 % Test
     ),
-    RoutesKeys.routesGenerator := InjectedRoutesGenerator,
+    RoutesKeys.routesGenerator := InjectedRoutesGenerator
+  )
+
+  def assetSettings = Seq(
     mappings in(Compile, packageBin) ++= {
       (unmanagedResourceDirectories in Assets).value flatMap
         (assetDir => (assetDir ***) pair relativeTo(baseDirectory.value))
