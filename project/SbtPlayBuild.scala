@@ -1,6 +1,6 @@
 import bintray.Plugin.bintraySettings
 import bintray.Keys.{bintray, bintrayOrganization, repository}
-import com.mle.sbtutils.SbtProjects
+import com.malliina.sbtutils.SbtProjects
 import sbt.Keys._
 import sbt._
 
@@ -11,10 +11,10 @@ object SbtPlayBuild extends Build {
   lazy val template = SbtProjects.testableProject("sbt-play").settings(projectSettings: _*)
 
   lazy val projectSettings = bintraySettings ++ Seq(
-    organization := "com.github.malliina",
-    version := "0.5.0",
+    organization := "com.malliina",
+    version := "0.6.0",
     sbtPlugin := true,
-    scalaVersion := "2.10.4",
+    scalaVersion := "2.10.6",
     exportJars := false,
     fork in Test := true,
     resolvers += Resolver.url("malliina bintray sbt", url("https://dl.bintray.com/malliina/sbt-plugins/"))(Resolver.ivyStylePatterns),
@@ -25,7 +25,7 @@ object SbtPlayBuild extends Build {
   ) ++ plugins
 
   def plugins = Seq(
-    "com.github.malliina" %% "sbt-utils" % "0.2.1",
-    "com.typesafe.play" % "sbt-plugin" % "2.4.3"
+    "com.malliina" %% "sbt-utils" % "0.3.0",
+    "com.typesafe.play" % "sbt-plugin" % "2.4.6"
   ) map addSbtPlugin
 }

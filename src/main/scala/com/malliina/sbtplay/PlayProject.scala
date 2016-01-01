@@ -1,6 +1,6 @@
-package com.mle.sbtplay
+package com.malliina.sbtplay
 
-import com.mle.sbtutils.SbtProjects
+import com.malliina.sbtutils.SbtProjects
 import com.typesafe.sbt.web.Import.Assets
 import play.routes.compiler.InjectedRoutesGenerator
 import play.sbt.routes.RoutesKeys
