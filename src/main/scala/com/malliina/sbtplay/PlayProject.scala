@@ -10,9 +10,6 @@ import sbt._
 
 import scala.language.postfixOps
 
-/**
-  * @author Michael
-  */
 object PlayProject {
   def apply(name: String, base: File = file(".")) = SbtProjects.baseProject(name, base)
     .enablePlugins(PlayScala)
