@@ -11,7 +11,7 @@ object SbtPlayBuild extends Build {
 
   lazy val projectSettings = bintraySettings ++ Seq(
     organization := "com.malliina",
-    version := "0.7.0",
+    version := "0.7.1",
     sbtPlugin := true,
     scalaVersion := "2.10.6",
     exportJars := false,
@@ -25,6 +25,6 @@ object SbtPlayBuild extends Build {
 
   def plugins = Seq(
     "com.malliina" %% "sbt-utils" % "0.3.0",
-    "com.typesafe.play" % "sbt-plugin" % "2.5.0"
+    "com.typesafe.play" % "sbt-plugin" % "2.5.1"
   ) map addSbtPlugin
 }
