@@ -6,7 +6,7 @@ resulting jar.
 
 ## Installation ##
 
-    addSbtPlugin("com.malliina" % "sbt-play" % "0.8.0")
+    addSbtPlugin("com.malliina" % "sbt-play" % "0.8.1")
 
 ## Usage ##
 
