@@ -4,14 +4,12 @@ import com.malliina.sbtutils.SbtProjects
 import sbt.Keys._
 import sbt._
 
-/** A scala build file template.
-  */
 object SbtPlayBuild {
   lazy val template = SbtProjects.testableProject("sbt-play").settings(projectSettings: _*)
 
   lazy val projectSettings = bintraySettings ++ Seq(
     organization := "com.malliina",
-    version := "0.8.2",
+    version := "0.9.0",
     sbtPlugin := true,
     scalaVersion := "2.10.6",
     exportJars := false,
@@ -25,6 +23,6 @@ object SbtPlayBuild {
 
   def plugins = Seq(
     "com.malliina" %% "sbt-utils" % "0.4.0",
-    "com.typesafe.play" % "sbt-plugin" % "2.5.8"
+    "com.typesafe.play" % "sbt-plugin" % "2.5.10"
   ) map addSbtPlugin
 }
