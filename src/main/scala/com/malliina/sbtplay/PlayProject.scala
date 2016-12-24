@@ -1,6 +1,5 @@
 package com.malliina.sbtplay
 
-import com.malliina.sbtutils.SbtProjects
 import com.typesafe.sbt.web.Import.Assets
 import play.routes.compiler.InjectedRoutesGenerator
 import play.sbt.routes.RoutesKeys
@@ -11,16 +10,31 @@ import sbt._
 import scala.language.postfixOps
 
 object PlayProject {
-  def apply(name: String, base: File = file(".")) = SbtProjects.baseProject(name, base)
+  def noDeps(name: String, base: File = file(".")) = Project(name, base)
+    .enablePlugins(PlayScala)
+    .settings(routesSettings)
+
+  def default(name: String, base: File = file(".")) = Project(name, base)
     .enablePlugins(PlayScala)
     .settings(defaultSettings: _*)
 
-  def defaultSettings = Seq(
-    resolvers += "scalaz-bintray" at "https://dl.bintray.com/scalaz/releases",
-    libraryDependencies ++= Seq(
-      PlayImport.specs2 % Test
-    ),
+  def library(name: String, base: File = file(".")) = Project(name, base)
+    .settings(libSettings: _*)
+
+  def defaultSettings = routesSettings ++ libSettings
+
+  def routesSettings = Seq(
     RoutesKeys.routesGenerator := InjectedRoutesGenerator
+  )
+
+  def libSettings = Seq(
+    libraryDependencies ++= defaultDeps
+  )
+
+  def defaultDeps = Seq(
+    "com.lihaoyi" %% "scalatags" % "0.6.2",
+    "org.scalatestplus.play" %% "scalatestplus-play" % "1.5.1" % Test,
+    PlayImport.specs2 % Test
   )
 
   def assetSettings = Seq(
