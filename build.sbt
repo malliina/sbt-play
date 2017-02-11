@@ -1,1 +1,1 @@
-lazy val sbtplay = SbtPlayBuild.template
+lazy val sbtplay = SbtPlayBuild.sbtPlay
