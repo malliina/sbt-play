@@ -9,7 +9,10 @@ object SbtPlayBuild {
   lazy val projectSettings = Seq(
     organization := "com.malliina",
     scalaVersion := "2.10.6",
-    resolvers += Resolver.url("malliina bintray sbt", url("https://dl.bintray.com/malliina/sbt-plugins/"))(Resolver.ivyStylePatterns)
+    resolvers ++= Seq(
+      Resolver.url("malliina bintray sbt", url("https://dl.bintray.com/malliina/sbt-plugins/"))(Resolver.ivyStylePatterns),
+      Resolver.bintrayRepo("malliina", "maven")
+    )
   ) ++ plugins
 
   def plugins = Seq(
