@@ -1,25 +1,38 @@
 package com.malliina.sbtplay
 
+import com.malliina.sbt.unix.LinuxPlugin
+import com.typesafe.sbt.SbtNativePackager.Debian
+import com.typesafe.sbt.packager.Keys.serverLoading
+import com.typesafe.sbt.packager.archetypes.{JavaServerAppPackaging, ServerLoader}
 import com.typesafe.sbt.web.Import.Assets
 import play.routes.compiler.InjectedRoutesGenerator
 import play.sbt.routes.RoutesKeys
 import play.sbt.{PlayImport, PlayScala}
 import sbt.Keys._
 import sbt._
+import sbtbuildinfo.BuildInfoPlugin
 
 import scala.language.postfixOps
 
 object PlayProject {
-  def noDeps(name: String, base: File = file(".")) = Project(name, base)
-    .enablePlugins(PlayScala)
-    .settings(routesSettings)
-
   def default(name: String, base: File = file(".")) = Project(name, base)
     .enablePlugins(PlayScala)
     .settings(defaultSettings: _*)
 
+  def server(name: String, base: File = file(".")) = Project(name, base)
+    .enablePlugins(PlayScala, JavaServerAppPackaging, BuildInfoPlugin)
+    .settings(serverSettings: _*)
+
+  def noDeps(name: String, base: File = file(".")) = Project(name, base)
+    .enablePlugins(PlayScala)
+    .settings(routesSettings)
+
   def library(name: String, base: File = file(".")) = Project(name, base)
     .settings(libSettings: _*)
+
+  def serverSettings = defaultSettings ++ LinuxPlugin.playSettings ++ Seq(
+    serverLoading in Debian := ServerLoader.Systemd
+  )
 
   def defaultSettings = routesSettings ++ libSettings
 

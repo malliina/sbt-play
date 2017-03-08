@@ -9,6 +9,7 @@ object BuildBuild {
   ) ++ sbtPlugins
 
   def sbtPlugins = Seq(
+    "com.malliina" %% "sbt-utils" % "0.6.1",
     "me.lessis" % "bintray-sbt" % "0.2.1"
   ) map addSbtPlugin
 }
