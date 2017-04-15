@@ -17,7 +17,7 @@ object SbtPlayBuild {
 
   def plugins = Seq(
     "com.typesafe.play" % "sbt-plugin" % "2.5.14",
-    "com.malliina" %% "sbt-packager" % "2.2.1",
+    "com.malliina" %% "sbt-packager" % "2.2.2",
     "com.eed3si9n" % "sbt-buildinfo" % "0.6.1"
   ) map addSbtPlugin
 }
