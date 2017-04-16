@@ -1,5 +1,6 @@
 package com.malliina.sbtplay
 
+import com.malliina.sbt.unix.LinuxKeys.ciBuild
 import com.malliina.sbt.unix.LinuxPlugin
 import com.typesafe.sbt.SbtNativePackager.Debian
 import com.typesafe.sbt.packager.Keys.serverLoading
@@ -35,17 +36,11 @@ object PlayProject {
   def serverSettings = defaultSettings ++ LinuxPlugin.playSettings ++ Seq(
     serverLoading in Debian := ServerLoader.Systemd,
     // https://github.com/sbt/sbt-release
-    // increments the version and pushes tags - does not publish binaries
     releaseProcess := Seq[ReleaseStep](
+      releaseStepTask(clean in Compile),
       checkSnapshotDependencies,
-      inquireVersions,
       runTest,
-      setReleaseVersion,
-      commitReleaseVersion, // performs the initial git checks
-      tagRelease,
-      setNextVersion,
-      commitNextVersion,
-      pushChanges // also checks that an upstream branch is properly configured
+      releaseStepTask(ciBuild)
     )
   )
 
