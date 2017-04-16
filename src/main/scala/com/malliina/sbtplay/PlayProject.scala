@@ -11,7 +11,8 @@ import play.sbt.routes.RoutesKeys
 import play.sbt.{PlayImport, PlayScala}
 import sbt.Keys._
 import sbt._
-import sbtbuildinfo.BuildInfoPlugin
+import sbtbuildinfo.BuildInfoKeys.buildInfoKeys
+import sbtbuildinfo.{BuildInfoKey, BuildInfoPlugin}
 import sbtrelease.ReleasePlugin.autoImport._
 import sbtrelease.ReleaseStateTransformations._
 
@@ -41,6 +42,11 @@ object PlayProject {
       checkSnapshotDependencies,
       runTest,
       releaseStepTask(ciBuild)
+    ),
+    buildInfoKeys := Seq[BuildInfoKey](
+      name,
+      version,
+      "hash" -> Process("git rev-parse --short HEAD").lines.head
     )
   )
 
