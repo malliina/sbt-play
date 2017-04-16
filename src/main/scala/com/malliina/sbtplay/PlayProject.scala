@@ -11,6 +11,8 @@ import play.sbt.{PlayImport, PlayScala}
 import sbt.Keys._
 import sbt._
 import sbtbuildinfo.BuildInfoPlugin
+import sbtrelease.ReleasePlugin.autoImport._
+import sbtrelease.ReleaseStateTransformations._
 
 import scala.language.postfixOps
 
@@ -31,7 +33,20 @@ object PlayProject {
     .settings(libSettings: _*)
 
   def serverSettings = defaultSettings ++ LinuxPlugin.playSettings ++ Seq(
-    serverLoading in Debian := ServerLoader.Systemd
+    serverLoading in Debian := ServerLoader.Systemd,
+    // https://github.com/sbt/sbt-release
+    // increments the version and pushes tags - does not publish binaries
+    releaseProcess := Seq[ReleaseStep](
+      checkSnapshotDependencies,
+      inquireVersions,
+      runTest,
+      setReleaseVersion,
+      commitReleaseVersion, // performs the initial git checks
+      tagRelease,
+      setNextVersion,
+      commitNextVersion,
+      pushChanges // also checks that an upstream branch is properly configured
+    )
   )
 
   def defaultSettings = routesSettings ++ libSettings
