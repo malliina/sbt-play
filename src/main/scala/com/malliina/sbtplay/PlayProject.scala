@@ -27,6 +27,10 @@ object PlayProject {
     .enablePlugins(PlayScala, JavaServerAppPackaging, BuildInfoPlugin)
     .settings(serverSettings: _*)
 
+  def linux(name: String, base: File = file(".")) = Project(name, base)
+    .enablePlugins(PlayScala, JavaServerAppPackaging, LinuxPlugin, BuildInfoPlugin)
+    .settings(linuxSettings: _*)
+
   def noDeps(name: String, base: File = file(".")) = Project(name, base)
     .enablePlugins(PlayScala)
     .settings(routesSettings)
@@ -34,8 +38,9 @@ object PlayProject {
   def library(name: String, base: File = file(".")) = Project(name, base)
     .settings(libSettings: _*)
 
-  def serverSettings = defaultSettings ++ LinuxPlugin.playSettings ++ Seq(
-    serverLoading in Debian := ServerLoader.Systemd,
+  def serverSettings = linuxSettings ++ LinuxPlugin.playSettings
+
+  def linuxSettings = defaultSettings ++ Seq(
     // https://github.com/sbt/sbt-release
     releaseProcess := Seq[ReleaseStep](
       releaseStepTask(clean in Compile),
