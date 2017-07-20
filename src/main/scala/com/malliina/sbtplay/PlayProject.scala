@@ -2,9 +2,7 @@ package com.malliina.sbtplay
 
 import com.malliina.sbt.unix.LinuxKeys.ciBuild
 import com.malliina.sbt.unix.LinuxPlugin
-import com.typesafe.sbt.SbtNativePackager.Debian
-import com.typesafe.sbt.packager.Keys.serverLoading
-import com.typesafe.sbt.packager.archetypes.{JavaServerAppPackaging, ServerLoader}
+import com.typesafe.sbt.packager.archetypes.JavaServerAppPackaging
 import com.typesafe.sbt.web.Import.Assets
 import play.routes.compiler.InjectedRoutesGenerator
 import play.sbt.routes.RoutesKeys
