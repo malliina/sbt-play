@@ -11,7 +11,7 @@ resolvers ++= Seq(
 
 Seq(
   "com.typesafe.play" % "sbt-plugin" % "2.6.2",
-  "com.malliina" %% "sbt-packager" % "2.2.3",
+  "com.malliina" %% "sbt-packager" % "2.3.0",
   "com.eed3si9n" % "sbt-buildinfo" % "0.6.1",
   "com.github.gseitz" % "sbt-release" % "1.0.4"
 ) map addSbtPlugin
