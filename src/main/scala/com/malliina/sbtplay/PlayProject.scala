@@ -9,12 +9,14 @@ import play.sbt.routes.RoutesKeys
 import play.sbt.{PlayImport, PlayScala}
 import sbt.Keys._
 import sbt._
+import sbt.io.Path
 import sbtbuildinfo.BuildInfoKeys.buildInfoKeys
 import sbtbuildinfo.{BuildInfoKey, BuildInfoPlugin}
 import sbtrelease.ReleasePlugin.autoImport._
 import sbtrelease.ReleaseStateTransformations._
 
 import scala.language.postfixOps
+import scala.sys.process.Process
 
 object PlayProject {
   def default(name: String, base: File = file(".")) = Project(name, base)
@@ -49,7 +51,7 @@ object PlayProject {
     buildInfoKeys := Seq[BuildInfoKey](
       name,
       version,
-      "hash" -> Process("git rev-parse --short HEAD").lines.head
+      "hash" -> Process("git rev-parse --short HEAD").lineStream.head
     )
   )
 
@@ -72,8 +74,9 @@ object PlayProject {
 
   def assetSettings = Seq(
     mappings in(Compile, packageBin) ++= {
-      (unmanagedResourceDirectories in Assets).value flatMap
-        (assetDir => (assetDir ***) pair relativeTo(baseDirectory.value))
+      (unmanagedResourceDirectories in Assets).value.flatMap { assetDir =>
+        assetDir.allPaths pair Path.relativeTo(baseDirectory.value)
+      }
     }
   )
 }
