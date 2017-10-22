@@ -3,6 +3,7 @@ package com.malliina.sbtplay
 import com.malliina.sbt.unix.LinuxKeys.ciBuild
 import com.malliina.sbt.unix.LinuxPlugin
 import com.typesafe.sbt.packager.archetypes.JavaServerAppPackaging
+import com.typesafe.sbt.packager.archetypes.systemloader.SystemdPlugin
 import com.typesafe.sbt.web.Import.Assets
 import play.routes.compiler.InjectedRoutesGenerator
 import play.sbt.routes.RoutesKeys
@@ -24,11 +25,11 @@ object PlayProject {
     .settings(defaultSettings: _*)
 
   def server(name: String, base: File = file(".")) = Project(name, base)
-    .enablePlugins(PlayScala, JavaServerAppPackaging, BuildInfoPlugin)
+    .enablePlugins(PlayScala, JavaServerAppPackaging, SystemdPlugin, BuildInfoPlugin)
     .settings(serverSettings: _*)
 
   def linux(name: String, base: File = file(".")) = Project(name, base)
-    .enablePlugins(PlayScala, JavaServerAppPackaging, LinuxPlugin, BuildInfoPlugin)
+    .enablePlugins(PlayScala, JavaServerAppPackaging, LinuxPlugin, SystemdPlugin, BuildInfoPlugin)
     .settings(linuxSettings: _*)
 
   def noDeps(name: String, base: File = file(".")) = Project(name, base)
@@ -67,7 +68,7 @@ object PlayProject {
   )
 
   def defaultDeps = Seq(
-    "com.lihaoyi" %% "scalatags" % "0.6.5",
+    "com.lihaoyi" %% "scalatags" % "0.6.7",
     "org.scalatestplus.play" %% "scalatestplus-play" % "3.1.1" % Test,
     PlayImport.specs2 % Test
   )
