@@ -15,4 +15,4 @@ into the resulting jar.
 
 Define your project as follows in Build.scala:
 
-    lazy val project = com.mle.sbt.play.PlayProject.server("mywebsite")
+    lazy val project = com.malliina.sbtplay.PlayProject.server("mywebsite")
