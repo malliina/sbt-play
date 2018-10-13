@@ -3,14 +3,14 @@ import com.malliina.sbtutils.SbtProjects
 lazy val sbtplay = SbtProjects.sbtPlugin("sbt-play")
 
 organization := "com.malliina"
-scalaVersion := "2.12.6"
+scalaVersion := "2.12.7"
 resolvers ++= Seq(
   Resolver.url("malliina bintray sbt", url("https://dl.bintray.com/malliina/sbt-plugins/"))(Resolver.ivyStylePatterns),
   Resolver.bintrayRepo("malliina", "maven")
 )
 
 Seq(
-  "com.typesafe.play" % "sbt-plugin" % "2.6.19",
+  "com.typesafe.play" % "sbt-plugin" % "2.6.20",
   "com.malliina" %% "sbt-packager" % "2.6.0",
   "com.eed3si9n" % "sbt-buildinfo" % "0.9.0",
   "com.github.gseitz" % "sbt-release" % "1.0.9"
