@@ -4,13 +4,9 @@ import com.malliina.sbt.unix.LinuxKeys.ciBuild
 import com.malliina.sbt.unix.LinuxPlugin
 import com.typesafe.sbt.packager.archetypes.JavaServerAppPackaging
 import com.typesafe.sbt.packager.archetypes.systemloader.SystemdPlugin
-import com.typesafe.sbt.web.Import.Assets
-import play.routes.compiler.InjectedRoutesGenerator
-import play.sbt.routes.RoutesKeys
 import play.sbt.{PlayImport, PlayScala}
 import sbt.Keys._
 import sbt._
-import sbt.io.Path
 import sbtbuildinfo.BuildInfoKeys.buildInfoKeys
 import sbtbuildinfo.{BuildInfoKey, BuildInfoPlugin}
 import sbtrelease.ReleasePlugin.autoImport._
@@ -20,28 +16,33 @@ import scala.language.postfixOps
 import scala.sys.process.Process
 
 object PlayProject {
-  def default(name: String, base: File = file(".")) = Project(name, base)
-    .enablePlugins(PlayScala)
-    .settings(defaultSettings: _*)
+  def default(name: String, base: File = file(".")) =
+    Project(name, base)
+      .enablePlugins(PlayScala)
+      .settings(libSettings)
 
-  def server(name: String, base: File = file(".")) = Project(name, base)
-    .enablePlugins(PlayScala, JavaServerAppPackaging, SystemdPlugin, BuildInfoPlugin)
-    .settings(serverSettings: _*)
+  def server(name: String, base: File = file(".")) =
+    Project(name, base)
+      .enablePlugins(PlayScala, JavaServerAppPackaging, SystemdPlugin, BuildInfoPlugin)
+      .settings(serverSettings: _*)
 
-  def linux(name: String, base: File = file(".")) = Project(name, base)
-    .enablePlugins(PlayScala, JavaServerAppPackaging, LinuxPlugin, SystemdPlugin, BuildInfoPlugin)
-    .settings(linuxSettings: _*)
+  def linux(name: String, base: File = file(".")) =
+    Project(name, base)
+      .enablePlugins(PlayScala, JavaServerAppPackaging, LinuxPlugin, SystemdPlugin, BuildInfoPlugin)
+      .settings(linuxSettings: _*)
 
-  def noDeps(name: String, base: File = file(".")) = Project(name, base)
-    .enablePlugins(PlayScala)
-    .settings(routesSettings)
+  def noDeps(name: String, base: File = file(".")) =
+    Project(name, base)
+      .enablePlugins(PlayScala)
+      .settings(libSettings)
 
-  def library(name: String, base: File = file(".")) = Project(name, base)
-    .settings(libSettings: _*)
+  def library(name: String, base: File = file(".")) =
+    Project(name, base)
+      .settings(libSettings: _*)
 
   def serverSettings = linuxSettings ++ LinuxPlugin.playSettings
 
-  def linuxSettings = defaultSettings ++ Seq(
+  def linuxSettings = libSettings ++ Seq(
     // https://github.com/sbt/sbt-release
     releaseProcess := Seq[ReleaseStep](
       releaseStepTask(clean in Compile),
@@ -56,12 +57,6 @@ object PlayProject {
     )
   )
 
-  def defaultSettings = routesSettings ++ libSettings
-
-  def routesSettings = Seq(
-    RoutesKeys.routesGenerator := InjectedRoutesGenerator
-  )
-
   def libSettings = Seq(
     resolvers += "Sonatype releases" at "https://oss.sonatype.org/content/repositories/releases/",
     libraryDependencies ++= defaultDeps
@@ -71,13 +66,5 @@ object PlayProject {
     "com.lihaoyi" %% "scalatags" % "0.6.7",
     "org.scalatestplus.play" %% "scalatestplus-play" % "3.1.2" % Test,
     PlayImport.specs2 % Test
-  )
-
-  def assetSettings = Seq(
-    mappings in(Compile, packageBin) ++= {
-      (unmanagedResourceDirectories in Assets).value.flatMap { assetDir =>
-        assetDir.allPaths pair Path.relativeTo(baseDirectory.value)
-      }
-    }
   )
 }
