@@ -9,10 +9,11 @@ into the resulting jar.
 
 ## Installation
 
-    addSbtPlugin("com.malliina" % "sbt-play" % "1.4.1")
+    addSbtPlugin("com.malliina" % "sbt-play" % "1.6.0")
 
 ## Usage
 
-Define your project as follows in Build.scala:
+Define your project as follows:
 
-    lazy val project = com.malliina.sbtplay.PlayProject.server("mywebsite")
+    val website = Project("mywebsite", file("."))
+      .enablePlugins(PlayServerPlugin)
