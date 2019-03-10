@@ -13,7 +13,23 @@ into the resulting jar.
 
 ## Usage
 
+Enable one of three plugins:
+
+- PlayServerPlugin
+- PlayLinuxPlugin
+- PlayDefaultPlugin
+
 Define your project as follows:
 
     val website = Project("mywebsite", file("."))
       .enablePlugins(PlayServerPlugin)
+
+Alternatively, for Linux deployment targets:
+      
+    val linuxWebsite = Project("mywebsite", file("."))
+      .enablePlugins(PlayLinuxPlugin)
+      
+Alternatively, for libraries:
+      
+    val playLibrary = Project("mywebsite", file("."))
+      .enablePlugins(PlayDefaultPlugin)
