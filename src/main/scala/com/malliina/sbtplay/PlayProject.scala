@@ -63,7 +63,7 @@ object PlayProject {
   )
 
   def defaultDeps = Seq(
-    "com.lihaoyi" %% "scalatags" % "0.6.7",
+    "com.lihaoyi" %% "scalatags" % "0.6.8",
     "org.scalatestplus.play" %% "scalatestplus-play" % "4.0.1" % Test,
     PlayImport.specs2 % Test
   )
