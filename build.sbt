@@ -1,3 +1,5 @@
+Global / beforeCommitRelease := {}
+
 val sbtplay = Project("sbt-play", file("."))
   .enablePlugins(BintrayReleasePlugin)
   .settings(
