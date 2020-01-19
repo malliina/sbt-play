@@ -1,11 +1,5 @@
 scalaVersion := "2.12.10"
-resolvers ++= Seq(
-  Resolver.jcenterRepo,
-  Resolver.url(
-    "malliina bintray sbt",
-    url("https://dl.bintray.com/malliina/sbt-plugins/")
-  )(Resolver.ivyStylePatterns)
-)
+
 Seq(
-  "com.malliina" %% "sbt-utils-maven" % "0.15.3"
+  "com.malliina" % "sbt-utils-maven" % "0.15.7"
 ) map addSbtPlugin
