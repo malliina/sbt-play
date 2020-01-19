@@ -1,5 +1,4 @@
 ThisBuild / pluginCrossBuild / sbtVersion := "1.2.8"
-Global / useGpg := true
 
 val sbtplay = Project("sbt-play", file("."))
   .enablePlugins(MavenCentralPlugin)
@@ -18,7 +17,7 @@ val sbtplay = Project("sbt-play", file("."))
     releaseProcess := tagReleaseProcess.value,
     Seq(
       "com.typesafe.play" % "sbt-plugin" % "2.8.0",
-      "com.malliina" % "sbt-packager" % "2.8.3",
+      "com.malliina" % "sbt-packager" % "2.8.4",
       "com.eed3si9n" % "sbt-buildinfo" % "0.9.0",
       "com.github.gseitz" % "sbt-release" % "1.0.13"
     ) map addSbtPlugin
