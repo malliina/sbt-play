@@ -7,5 +7,5 @@ resolvers ++= Seq(
   )(Resolver.ivyStylePatterns)
 )
 Seq(
-  "com.malliina" %% "sbt-utils-maven" % "0.15.2"
+  "com.malliina" %% "sbt-utils-maven" % "0.15.3"
 ) map addSbtPlugin
