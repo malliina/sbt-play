@@ -7,6 +7,12 @@ find useful are added by default, avoiding repetition in build files. The
 packageBin task will furthermore deviate from the default and package assets 
 into the resulting jar.
 
+## Features
+
+- Custom release process
+- Predefined buildinfo settings
+- Support for running the app as an OS service (via sbt-native-packager)
+
 ## Installation
 
     addSbtPlugin("com.malliina" % "sbt-play" % "1.7.1")
