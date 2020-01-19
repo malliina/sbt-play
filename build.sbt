@@ -1,9 +1,11 @@
 ThisBuild / pluginCrossBuild / sbtVersion := "1.2.8"
 
 val sbtplay = Project("sbt-play", file("."))
-  .enablePlugins(BintrayReleasePlugin)
+  .enablePlugins(MavenCentralPlugin)
   .settings(
     organization := "com.malliina",
+    gitUserName := "malliina",
+    developerName := "Michael Skogberg",
     scalaVersion := "2.12.10",
     resolvers ++= Seq(
       Resolver.url("malliina bintray sbt", url("https://dl.bintray.com/malliina/sbt-plugins/"))(
