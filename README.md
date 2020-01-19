@@ -9,7 +9,7 @@ into the resulting jar.
 
 ## Installation
 
-    addSbtPlugin("com.malliina" % "sbt-play" % "1.6.0")
+    addSbtPlugin("com.malliina" % "sbt-play" % "1.7.1")
 
 ## Usage
 
