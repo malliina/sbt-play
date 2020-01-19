@@ -1,4 +1,5 @@
 ThisBuild / pluginCrossBuild / sbtVersion := "1.2.8"
+Global / useGpg := true
 
 val sbtplay = Project("sbt-play", file("."))
   .enablePlugins(MavenCentralPlugin)
