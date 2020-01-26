@@ -13,12 +13,6 @@ object PlayDefaultPlugin extends AutoPlugin {
   override def projectSettings = PlayProject.libSettings
 }
 
-object PlayServerPlugin extends AutoPlugin {
-  override def requires = PlayScala && JavaServerAppPackaging && SystemdPlugin && BuildInfoPlugin
-
-  override def projectSettings = PlayProject.serverSettings
-}
-
 object PlayLinuxPlugin extends AutoPlugin {
   override def requires =
     PlayScala && JavaServerAppPackaging && LinuxPlugin && SystemdPlugin && BuildInfoPlugin
